@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  agente-bbdd:
+    build: .
+    container_name: agente-bbdd
+    stdin_open: true 
+    tty: true
+    volumes:
+      # Conecta la carpeta local de queries con la del contenedor
+      - ./queries:/app/queries
+    environment:
+      # Toma los valores del archivo .env
+      - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
+      - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
+      - AWS_DEFAULT_REGION=${AWS_DEFAULT_REGION}
