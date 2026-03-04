@@ -1,25 +1,21 @@
-# core/aws_client.py
 import boto3
-from config import settings
+import os
 
 class BedrockAgent:
     def __init__(self):
-        self.session = boto3.Session(
-            aws_access_key_id=settings.AWS_ACCESS_KEY,
-            aws_secret_access_key=settings.AWS_SECRET_KEY,
-            region_name=settings.AWS_REGION
+        # Lee las credenciales del entorno inyectado por Docker
+        self.client = boto3.client(
+            "bedrock-runtime",
+            aws_access_key_id=os.getenv("AWS_ACCESS_KEY_ID"),
+            aws_secret_access_key=os.getenv("AWS_SECRET_ACCESS_KEY"),
+            region_name=os.getenv("AWS_DEFAULT_REGION", "us-east-1")
         )
-        # El cliente DEBE ser bedrock-runtime para invocar modelos
-        self.client = self.session.client("bedrock-runtime")
+        self.model_id = os.getenv("MODEL_ID", "us.deepseek.r1-v1:0")
 
     def preguntar(self, prompt):
         try:
-            # Validamos si el método existe antes de llamar
-            if not hasattr(self.client, 'converse'):
-                return "Error: Tu versión de boto3 es muy antigua. Ejecuta 'pip install --upgrade boto3'."
-
             response = self.client.converse(
-                modelId=settings.MODEL_ID,
+                modelId=self.model_id,
                 messages=[{"role": "user", "content": [{"text": prompt}]}],
                 inferenceConfig={"maxTokens": 2000, "temperature": 0.5}
             )
