@@ -17,4 +17,7 @@ COPY . .
 RUN mkdir -p /app/queries
 
 # Comando por defecto al levantar el contenedor
-CMD ["python", "data_analyst_bot.py"]
+#CMD ["python", "data_analyst_bot.py"]
+
+# Reemplaza la última línea de tu Dockerfile por esta:
+CMD ["streamlit", "run", "app.py", "--server.port=8501", "--server.address=0.0.0.0"]
