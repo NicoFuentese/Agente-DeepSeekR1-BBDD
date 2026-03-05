@@ -1,18 +1,18 @@
 # 🤖 Agente Analista de Base de Datos (GLPI)
 
-## 📝 Descripción
+## Descripción
 Este proyecto implementa un Agente de Inteligencia Artificial (basado en AWS Bedrock) diseñado para actuar como un Administrador de Bases de Datos (DBA) y Analista de Datos Senior. El agente se conecta directamente a una base de datos MariaDB (específicamente al esquema de GLPI), comprende su estructura y responde a preguntas en lenguaje natural generando y ejecutando consultas SQL complejas en tiempo real.
 
 Cuenta con una arquitectura híbrida que permite a los usuarios de negocio interactuar mediante una **Interfaz Web (Streamlit)** y a los administradores operar directamente desde la **Consola de Comandos (CLI)**.
 
-## 🏗️ Stack Tecnológico
+## Stack Tecnológico
 * **Lenguaje:** Python 3.9+
 * **Framework Web:** Streamlit
 * **Base de Datos:** MariaDB / MySQL (SQLAlchemy + Pandas)
 * **IA:** AWS Bedrock (Modelos LLM)
 * **Infraestructura:** Docker & Docker Compose
 
-## 📋 Requisitos Previos
+## Requisitos Previos
 
 ### Sistema Operativo
 * **Producción/Servidor:** Linux (Red Hat, CentOS, Rocky Linux 9, Ubuntu, Debian).
@@ -27,7 +27,7 @@ Cuenta con una arquitectura híbrida que permite a los usuarios de negocio inter
 * Acceso a un servidor MariaDB/MySQL.
 * Un usuario de base de datos con permisos estrictamente de lectura (`GRANT SELECT, SHOW VIEW ON database.* TO 'usuario'@'%'`).
 
-## ⚙️ Instalación y Configuración
+## Instalación y Configuración
 
 **1. Clonar el repositorio**
 ```bash
