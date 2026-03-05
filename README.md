@@ -77,15 +77,15 @@ docker exec -it agente-bbdd python data_analyst_bot.py
 ## Formato de Respuesta del Agente
 El agente está instruido (mediante Prompt Engineering) para responder siempre con un formato analítico estructurado:
 
-    1. Análisis de la Solución: Explica paso a paso qué tablas (ej. glpi_tickets, glpi_groups) utilizará, los JOINs necesarios y la lógica matemática aplicada.
-    2. Código SQL: Genera la consulta optimizada (usando CTEs, subconsultas y funciones de agregación si la complejidad lo amerita).
-    3. Guardado Automático: Si el usuario incluye en su petición la instrucción de guardar el reporte, el agente añade la etiqueta [SAVE: nombre_archivo], lo que genera un archivo .sql físico en el volumen mapeado ./queries/ del servidor anfitrión.
+1. **Análisis de la Solución**: Explica paso a paso qué tablas (ej. glpi_tickets, glpi_groups) utilizará, los JOINs necesarios y la lógica matemática aplicada.
+2.**Código SQL**: Genera la consulta optimizada (usando CTEs, subconsultas y funciones de agregación si la complejidad lo amerita).
+3. **Guardado Automático**: Si el usuario incluye en su petición la instrucción de guardar el reporte, el agente añade la etiqueta [SAVE: nombre_archivo], lo que genera un archivo .sql físico en el volumen mapeado ./queries/ del servidor anfitrión.
 
 ## Seguridad
 
-    - Ejecución Protegida: El agente tiene una directiva estricta de solo usar sentencias SELECT.
-    - Capa de Base de Datos: Se delega la seguridad final al motor de MariaDB mediante políticas RBAC (Role-Based Access Control). El usuario configurado en el .env debe carecer de privilegios INSERT, UPDATE, DELETE o DROP.
-    - Aislamiento Docker: La aplicación corre en un entorno aislado sin acceso directo a los binarios del host.
+- **Ejecución Protegida**: El agente tiene una directiva estricta de solo usar sentencias SELECT.
+- **Capa de Base de Datos**: Se delega la seguridad final al motor de MariaDB mediante políticas RBAC (Role-Based Access Control). El usuario configurado en el .env debe carecer de privilegios INSERT, UPDATE, DELETE o DROP.
+- **Aislamiento Docker**: La aplicación corre en un entorno aislado sin acceso directo a los binarios del host.
 
 ## Licencia
 
